@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Royal Society of Sciences</title>
+  <link rel="stylesheet" href="css/style.css"> <!-- Link to main CSS -->
+  <style>
+    /* Page-specific styles */
+    .contact-container {
+      max-width: 1000px;
+      margin: 60px auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+      z-index: 1;
+      position: relative;
+      animation: popUp 1s ease forwards;
+    }
+
+    .contact-info, .contact-form {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .contact-info h2 {
+      color: gold;
+      margin-bottom: 15px;
+    }
+
+    .contact-info p {
+      color: #ccc;
+      margin: 8px 0;
+    }
+
+    .map {
+      margin-top: 20px;
+      width: 100%;
+      height: 200px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #777;
+      font-size: 0.9em;
+    }
+
+    form label {
+      display: block;
+      margin: 12px 0 5px;
+      color: #ccc;
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: none;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      font-size: 1em;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    form input:focus, form textarea:focus {
+      background: rgba(255,255,255,0.2);
+      box-shadow: 0 0 10px gold;
+    }
+
+    form textarea {
+      resize: none;
+      height: 100px;
+    }
+
+    form button {
+      width: 100%;
+      padding: 12px;
+      background-color: #a56728;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    form button:hover {
+      background-color: #c77b30;
+    }
+
+    .success-message {
+      display: none;
+      text-align: center;
+      color: lightgreen;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    .back-btn {
+      display: block;
+      margin: 30px auto 0;
+      text-align: center;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.9em;
+    }
+
+    .back-btn:hover {
+      color: gold;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating chemical elements -->
+  <div class="chemical" style="left:5%; animation-delay:0s;">H₂O</div>
+  <div class="chemical" style="left:25%; animation-delay:2s;">CO₂</div>
+  <div class="chemical" style="left:45%; animation-delay:4s;">NaCl</div>
+  <div class="chemical" style="left:65%; animation-delay:1s;">O₂</div>
+  <div class="chemical" style="left:85%; animation-delay:3s;">C₆H₁₂O₆</div>
+
+  <header>
+    <h1>Contact Us</h1>
+    <p>Get in touch with the Royal Society of Sciences</p>
+  </header>
+
+  <div class="contact-container">
+    <!-- Contact Info -->
+    <div class="contact-info">
+      <h2>Reach Us</h2>
+      <p>📍 Royal College Curepipe, Mauritius</p>
+      <p>📧 Email: rsciences@rcc.mu</p>
+      <p>📞 Phone: +230 123 4567</p>
+
+      <div class="map">
+        Google Map Placeholder
+      </div>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="contact-form">
+      <h2>Send a Message</h2>
+      <form id="contactForm">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+        <label for="email">Your Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Type your message here..." required></textarea>
+
+        <button type="submit">Send Message</button>
+        <p class="success-message" id="successMsg">✅ Message sent successfully! (Demo only)</p>
+      </form>
+    </div>
+  </div>
+
+  <a href="index.html" class="back-btn">← Back to Home</a>
+
+  <script>
+    // Simulated front-end form submission
+    const form = document.getElementById('contactForm');
+    const successMsg = document.getElementById('successMsg');
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      successMsg.style.display = 'block';
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Research Papers - Royal Society of Sciences</title>
+  <style>
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0a0a2a;
+      color: white;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    header {
+      text-align: center;
+      padding: 100px 20px 40px;
+      background: linear-gradient(to bottom, #000, #0a0a2a);
+      z-index: 1;
+      position: relative;
+    }
+
+    header h1 {
+      font-size: 2.5em;
+      color: gold;
+      margin-bottom: 10px;
+      animation: fadeInDown 1s ease forwards;
+    }
+
+    header p {
+      color: #ccc;
+      font-size: 1.1em;
+      animation: fadeInDown 1.3s ease forwards;
+    }
+
+    /* Search and filter */
+    .search-container {
+      text-align: center;
+      margin: 30px 0 20px;
+      z-index: 1;
+      position: relative;
+    }
+
+    .search-container input {
+      width: 60%;
+      max-width: 400px;
+      padding: 10px;
+      border-radius: 25px;
+      border: none;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      font-size: 1em;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    .search-container input:focus {
+      background: rgba(255,255,255,0.2);
+      box-shadow: 0 0 10px gold;
+    }
+
+    .paper-list {
+      width: 90%;
+      max-width: 800px;
+      margin: 30px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .paper-item {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.7s ease-out;
+    }
+
+    .paper-item.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .paper-item h3 {
+      color: gold;
+      margin-bottom: 5px;
+    }
+
+    .paper-item p {
+      color: #ccc;
+      font-size: 0.9em;
+      margin-bottom: 10px;
+    }
+
+    .paper-item a {
+      display: inline-block;
+      background: #a56728;
+      color: white;
+      padding: 6px 15px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 0.9em;
+      transition: 0.3s;
+    }
+
+    .paper-item a:hover {
+      background: #c77b30;
+    }
+
+    /* Floating chemical elements */
+    .chemical {
+      position: fixed;
+      font-size: 2rem;
+      color: rgba(255, 215, 0, 0.3);
+      animation: float 10s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    }
+
+    @keyframes fadeInDown {
+      0% { opacity: 0; transform: translateY(-30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .back-btn {
+      display: block;
+      text-align: center;
+      margin: 30px auto;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.9em;
+      position: relative;
+      z-index: 1;
+    }
+
+    .back-btn:hover {
+      color: gold;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating chemical elements -->
+  <div class="chemical" style="left:5%; animation-delay:0s;">H₂O</div>
+  <div class="chemical" style="left:25%; animation-delay:2s;">CO₂</div>
+  <div class="chemical" style="left:45%; animation-delay:4s;">NaCl</div>
+  <div class="chemical" style="left:65%; animation-delay:1s;">O₂</div>
+  <div class="chemical" style="left:85%; animation-delay:3s;">C₆H₁₂O₆</div>
+
+  <header>
+    <h1>Research Papers</h1>
+    <p>Browse and download approved papers from our repository</p>
+  </header>
+
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search papers by title, author, or category...">
+  </div>
+
+  <div class="paper-list" id="paperList">
+    <!-- Example Papers -->
+    <div class="paper-item" data-title="Quantum Mechanics Simulation">
+      <h3>Quantum Mechanics Simulation</h3>
+      <p>Author: John Doe | Category: Physics</p>
+      <p>Abstract: Simulating quantum behavior in particles for advanced studies.</p>
+      <a href="#" download>Download PDF</a>
+    </div>
+
+    <div class="paper-item" data-title="Self-Healing Concrete">
+      <h3>Self-Healing Concrete</h3>
+      <p>Author: Sarah Lee | Category: Chemistry</p>
+      <p>Abstract: Using microencapsulated bagasse to repair cracks automatically.</p>
+      <a href="#" download>Download PDF</a>
+    </div>
+
+    <div class="paper-item" data-title="Amoeba-Based Cancer Therapy">
+      <h3>Amoeba-Based Cancer Therapy</h3>
+      <p>Author: Alex Kumar | Category: Biology</p>
+      <p>Abstract: Leveraging amoebas to target and destroy metastatic cancer cells.</p>
+      <a href="#" download>Download PDF</a>
+    </div>
+  </div>
+
+  <a href="index.html" class="back-btn">← Back to Home</a>
+
+  <script>
+    // Scroll animation
+    const papers = document.querySelectorAll('.paper-item');
+    window.addEventListener('scroll', () => {
+      papers.forEach(paper => {
+        const rect = paper.getBoundingClientRect();
+        if(rect.top < window.innerHeight - 50){
+          paper.classList.add('show');
+        }
+      });
+    });
+
+    // Simple search functionality
+    const searchInput = document.getElementById('searchInput');
+    const paperList = document.getElementById('paperList');
+
+    searchInput.addEventListener('keyup', () => {
+      const filter = searchInput.value.toLowerCase();
+      const items = paperList.getElementsByClassName('paper-item');
+
+      for (let i = 0; i < items.length; i++) {
+        let title = items[i].getAttribute('data-title').toLowerCase();
+        if(title.includes(filter)) {
+          items[i].style.display = 'block';
+        } else {
+          items[i].style.display = 'none';
+        }
+      }
+    });
+  </script>
+</body>
+</html>

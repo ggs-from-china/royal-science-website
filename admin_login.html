@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login - Royal Society of Sciences</title>
+  <style>
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0a0a2a;
+      color: white;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .login-container {
+      background: rgba(0,0,0,0.7);
+      padding: 40px 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+      width: 90%;
+      max-width: 400px;
+      position: relative;
+      z-index: 1;
+      animation: popUp 1s ease forwards;
+    }
+
+    h1 {
+      text-align: center;
+      color: gold;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      color: #ccc;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: none;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      font-size: 1em;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input:focus {
+      background: rgba(255,255,255,0.2);
+      box-shadow: 0 0 10px gold;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #a56728;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #c77b30;
+    }
+
+    .error-message {
+      display: none;
+      color: red;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .back-btn {
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.9em;
+    }
+
+    .back-btn:hover {
+      color: gold;
+    }
+
+    /* Floating chemical elements */
+    .chemical {
+      position: fixed;
+      font-size: 2rem;
+      color: rgba(255, 215, 0, 0.3);
+      animation: float 10s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    }
+
+    @keyframes popUp {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating chemical elements -->
+  <div class="chemical" style="left:5%; animation-delay:0s;">H₂O</div>
+  <div class="chemical" style="left:25%; animation-delay:2s;">CO₂</div>
+  <div class="chemical" style="left:45%; animation-delay:4s;">NaCl</div>
+  <div class="chemical" style="left:65%; animation-delay:1s;">O₂</div>
+  <div class="chemical" style="left:85%; animation-delay:3s;">C₆H₁₂O₆</div>
+
+  <div class="login-container">
+    <h1>Admin Login</h1>
+    <p class="error-message" id="errorMsg">❌ Invalid username or password</p>
+    <form id="loginForm">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" placeholder="Enter username" required>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Enter password" required>
+
+      <button type="submit">Login</button>
+    </form>
+    <a href="../index.html" class="back-btn">← Back to Home</a>
+  </div>
+
+  <script>
+    // Fake login for front-end demo
+    const form = document.getElementById('loginForm');
+    const errorMsg = document.getElementById('errorMsg');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const user = document.getElementById('username').value;
+      const pass = document.getElementById('password').value;
+
+      // Demo credentials (replace with real backend later)
+      if(user === "admin" && pass === "1234"){
+        window.location.href = "dashboard.html";
+      } else {
+        errorMsg.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>

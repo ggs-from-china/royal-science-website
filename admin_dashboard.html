@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Royal Society of Sciences</title>
+  <style>
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0a0a2a;
+      color: white;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px 30px;
+      background: linear-gradient(to bottom, #000, #0a0a2a);
+      z-index: 1;
+      position: relative;
+    }
+
+    header h1 {
+      font-size: 2.2em;
+      color: gold;
+      margin-bottom: 5px;
+    }
+
+    header p {
+      color: #ccc;
+      font-size: 1em;
+    }
+
+    .dashboard-container {
+      width: 90%;
+      max-width: 900px;
+      margin: 30px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .paper-card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease-out;
+    }
+
+    .paper-card.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .paper-info h3 {
+      color: gold;
+      margin-bottom: 5px;
+    }
+
+    .paper-info p {
+      color: #ccc;
+      font-size: 0.9em;
+    }
+
+    .actions button {
+      margin: 5px;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.9em;
+      transition: 0.3s;
+    }
+
+    .approve {
+      background-color: #28a745;
+      color: white;
+    }
+
+    .approve:hover {
+      background-color: #34d058;
+    }
+
+    .reject {
+      background-color: #d62828;
+      color: white;
+    }
+
+    .reject:hover {
+      background-color: #f84a4a;
+    }
+
+    .logout-btn {
+      display: block;
+      text-align: center;
+      margin: 30px auto;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.9em;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logout-btn:hover {
+      color: gold;
+    }
+
+    /* Floating chemical elements */
+    .chemical {
+      position: fixed;
+      font-size: 2rem;
+      color: rgba(255, 215, 0, 0.3);
+      animation: float 10s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating chemical elements -->
+  <div class="chemical" style="left:5%; animation-delay:0s;">H₂O</div>
+  <div class="chemical" style="left:25%; animation-delay:2s;">CO₂</div>
+  <div class="chemical" style="left:45%; animation-delay:4s;">NaCl</div>
+  <div class="chemical" style="left:65%; animation-delay:1s;">O₂</div>
+  <div class="chemical" style="left:85%; animation-delay:3s;">C₆H₁₂O₆</div>
+
+  <header>
+    <h1>Admin Dashboard</h1>
+    <p>Manage submitted papers: approve or reject</p>
+  </header>
+
+  <div class="dashboard-container" id="dashboard">
+    <!-- Example Paper Submissions -->
+    <div class="paper-card">
+      <div class="paper-info">
+        <h3>Quantum Mechanics Simulation</h3>
+        <p>Author: John Doe | Category: Physics</p>
+        <p>Submitted on: 06 August 2025</p>
+      </div>
+      <div class="actions">
+        <button class="approve">Approve</button>
+        <button class="reject">Reject</button>
+      </div>
+    </div>
+
+    <div class="paper-card">
+      <div class="paper-info">
+        <h3>Self-Healing Concrete</h3>
+        <p>Author: Sarah Lee | Category: Chemistry</p>
+        <p>Submitted on: 05 August 2025</p>
+      </div>
+      <div class="actions">
+        <button class="approve">Approve</button>
+        <button class="reject">Reject</button>
+      </div>
+    </div>
+
+    <div class="paper-card">
+      <div class="paper-info">
+        <h3>Amoeba-Based Cancer Therapy</h3>
+        <p>Author: Alex Kumar | Category: Biology</p>
+        <p>Submitted on: 04 August 2025</p>
+      </div>
+      <div class="actions">
+        <button class="approve">Approve</button>
+        <button class="reject">Reject</button>
+      </div>
+    </div>
+  </div>
+
+  <a href="../index.html" class="logout-btn">← Logout and Return to Home</a>
+
+  <script>
+    // Scroll animation
+    const papers = document.querySelectorAll('.paper-card');
+    window.addEventListener('scroll', () => {
+      papers.forEach(paper => {
+        const rect = paper.getBoundingClientRect();
+        if(rect.top < window.innerHeight - 50){
+          paper.classList.add('show');
+        }
+      });
+    });
+
+    // Approve / Reject functionality (front-end demo)
+    const approveButtons = document.querySelectorAll('.approve');
+    const rejectButtons = document.querySelectorAll('.reject');
+
+    approveButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        alert('✅ Paper Approved (Demo Only)');
+        btn.parentElement.parentElement.style.background = 'rgba(0, 255, 0, 0.2)';
+      });
+    });
+
+    rejectButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        alert('❌ Paper Rejected (Demo Only)');
+        btn.parentElement.parentElement.style.background = 'rgba(255, 0, 0, 0.2)';
+      });
+    });
+  </script>
+</body>
+</html>

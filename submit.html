@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Research Paper - Royal Society of Sciences</title>
+  <style>
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0a0a2a;
+      color: white;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .container {
+      background: rgba(0,0,0,0.7);
+      padding: 40px 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+      width: 90%;
+      max-width: 500px;
+      position: relative;
+      z-index: 1;
+      animation: popUp 1s ease forwards;
+    }
+
+    h1 {
+      text-align: center;
+      color: gold;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      color: #ccc;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: none;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      font-size: 1em;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      background: rgba(255,255,255,0.2);
+      box-shadow: 0 0 10px gold;
+    }
+
+    textarea {
+      resize: none;
+      height: 100px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #a56728;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #c77b30;
+    }
+
+    /* Floating chemical elements */
+    .chemical {
+      position: fixed;
+      font-size: 2rem;
+      color: rgba(255, 215, 0, 0.3);
+      animation: float 10s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    }
+
+    @keyframes popUp {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .success-message {
+      display: none;
+      text-align: center;
+      margin-top: 15px;
+      color: lightgreen;
+      font-weight: bold;
+    }
+
+    .back-btn {
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.9em;
+    }
+
+    .back-btn:hover {
+      color: gold;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating chemical elements -->
+  <div class="chemical" style="left:5%; animation-delay:0s;">H₂O</div>
+  <div class="chemical" style="left:25%; animation-delay:2s;">CO₂</div>
+  <div class="chemical" style="left:45%; animation-delay:4s;">NaCl</div>
+  <div class="chemical" style="left:65%; animation-delay:1s;">O₂</div>
+  <div class="chemical" style="left:85%; animation-delay:3s;">C₆H₁₂O₆</div>
+
+  <div class="container">
+    <h1>Submit Your Research Paper</h1>
+    <form id="paperForm">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+      <label for="title">Paper Title</label>
+      <input type="text" id="title" name="title" placeholder="Enter your paper title" required>
+
+      <label for="category">Category</label>
+      <select id="category" name="category" required>
+        <option value="">-- Select a Category --</option>
+        <option>Physics</option>
+        <option>Chemistry</option>
+        <option>Biology</option>
+        <option>Technology</option>
+        <option>Other</option>
+      </select>
+
+      <label for="abstract">Abstract</label>
+      <textarea id="abstract" name="abstract" placeholder="Brief summary of your paper" required></textarea>
+
+      <label for="file">Upload PDF</label>
+      <input type="file" id="file" name="file" accept=".pdf" required>
+
+      <button type="submit">Submit Paper</button>
+    </form>
+    <p class="success-message" id="successMsg">✅ Paper submitted successfully! (Front-end only)</p>
+    <a href="index.html" class="back-btn">← Back to Home</a>
+  </div>
+
+  <script>
+    // Simulate front-end submission for now
+    const form = document.getElementById('paperForm');
+    const successMsg = document.getElementById('successMsg');
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      successMsg.style.display = 'block';
+      form.reset();
+    });
+  </script>
+</body>
+</html>

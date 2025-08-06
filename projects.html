@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Research Projects - Royal Society of Sciences</title>
+  <style>
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0a0a2a;
+      color: white;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    header {
+      text-align: center;
+      padding: 100px 20px 40px;
+      background: linear-gradient(to bottom, #000, #0a0a2a);
+      z-index: 1;
+      position: relative;
+    }
+
+    header h1 {
+      font-size: 2.5em;
+      color: gold;
+      margin-bottom: 10px;
+      animation: fadeInDown 1s ease forwards;
+    }
+
+    header p {
+      color: #ccc;
+      font-size: 1.1em;
+      animation: fadeInDown 1.3s ease forwards;
+    }
+
+    .filter-buttons {
+      text-align: center;
+      margin: 30px 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .filter-buttons button {
+      margin: 5px;
+      padding: 10px 20px;
+      border: none;
+      background: #a56728;
+      color: white;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .filter-buttons button:hover {
+      background: #c77b30;
+    }
+
+    .projects-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      width: 90%;
+      margin: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .project-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.7s ease-out;
+    }
+
+    .project-card.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .project-card h3 {
+      color: gold;
+      margin-bottom: 10px;
+    }
+
+    .project-card p {
+      color: #ccc;
+      font-size: 0.95em;
+    }
+
+    .project-card a {
+      display: inline-block;
+      margin-top: 15px;
+      background: #a56728;
+      color: white;
+      padding: 8px 20px;
+      text-decoration: none;
+      border-radius: 20px;
+      transition: 0.3s;
+    }
+
+    .project-card a:hover {
+      background: #c77b30;
+    }
+
+    /* Floating chemical elements */
+    .chemical {
+      position: fixed;
+      font-size: 2rem;
+      color: rgba(255, 215, 0, 0.3);
+      animation: float 10s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    }
+
+    @keyframes fadeInDown {
+      0% { opacity: 0; transform: translateY(-30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .back-btn {
+      display: block;
+      text-align: center;
+      margin: 30px auto;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.9em;
+      position: relative;
+      z-index: 1;
+    }
+
+    .back-btn:hover {
+      color: gold;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating chemical elements -->
+  <div class="chemical" style="left:5%; animation-delay:0s;">H₂O</div>
+  <div class="chemical" style="left:25%; animation-delay:2s;">CO₂</div>
+  <div class="chemical" style="left:45%; animation-delay:4s;">NaCl</div>
+  <div class="chemical" style="left:65%; animation-delay:1s;">O₂</div>
+  <div class="chemical" style="left:85%; animation-delay:3s;">C₆H₁₂O₆</div>
+
+  <header>
+    <h1>Research Projects</h1>
+    <p>Explore the innovative projects carried out by our members</p>
+  </header>
+
+  <div class="filter-buttons">
+    <button data-filter="all">All Projects</button>
+    <button data-filter="Physics">Physics</button>
+    <button data-filter="Chemistry">Chemistry</button>
+    <button data-filter="Biology">Biology</button>
+    <button data-filter="Technology">Technology</button>
+  </div>
+
+  <div class="projects-container">
+    <!-- Example Project Cards -->
+    <div class="project-card" data-category="Physics">
+      <h3>Quantum Mechanics Simulation</h3>
+      <p>Exploring subatomic particle interactions through simulation.</p>
+      <a href="#">View Paper</a>
+    </div>
+
+    <div class="project-card" data-category="Chemistry">
+      <h3>Self-Healing Concrete</h3>
+      <p>Using microencapsulated bagasse to create self-repairing materials.</p>
+      <a href="#">View Paper</a>
+    </div>
+
+    <div class="project-card" data-category="Biology">
+      <h3>Amoeba-Based Cancer Therapy</h3>
+      <p>Developing bioengineered amoebas to target metastasized cells.</p>
+      <a href="#">View Paper</a>
+    </div>
+
+    <div class="project-card" data-category="Technology">
+      <h3>Smart Water Filtration</h3>
+      <p>Glowing bioluminescent indicator for safe drinking water detection.</p>
+      <a href="#">View Paper</a>
+    </div>
+  </div>
+
+  <a href="index.html" class="back-btn">← Back to Home</a>
+
+  <script>
+    // Scroll reveal animation
+    const projectCards = document.querySelectorAll('.project-card');
+    window.addEventListener('scroll', () => {
+      projectCards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if(rect.top < window.innerHeight - 50){
+          card.classList.add('show');
+        }
+      });
+    });
+
+    // Filtering function
+    const buttons = document.querySelectorAll('.filter-buttons button');
+    const projects = document.querySelectorAll('.project-card');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const filter = button.getAttribute('data-filter');
+        projects.forEach(card => {
+          if(filter === 'all' || card.getAttribute('data-category') === filter){
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

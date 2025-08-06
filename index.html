@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Royal Society of Sciences - Home</title>
+  <style>
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0a0a2a;
+      color: white;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    header {
+      text-align: center;
+      padding: 120px 20px 80px;
+      background: linear-gradient(to bottom, #000, #0a0a2a);
+      position: relative;
+      z-index: 1;
+    }
+
+    header h1 {
+      font-size: 2.8em;
+      color: gold;
+      animation: fadeInDown 1s ease forwards;
+    }
+
+    header h2 {
+      font-size: 1.2em;
+      margin-top: 10px;
+      color: #ccc;
+      animation: fadeInDown 1.2s ease forwards;
+    }
+
+    header p {
+      margin-top: 15px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      color: #bbb;
+      animation: fadeInDown 1.5s ease forwards;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 25px;
+      background-color: #a56728;
+      color: white;
+      padding: 12px 25px;
+      text-decoration: none;
+      border-radius: 25px;
+      transition: 0.3s;
+      animation: popUp 2s ease forwards;
+    }
+
+    .btn:hover {
+      background-color: #c77b30;
+    }
+
+    /* Sections */
+    section {
+      padding: 80px 20px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease-out;
+      position: relative;
+      z-index: 1;
+    }
+
+    section.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    section h2 {
+      color: gold;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    section img {
+      max-width: 90%;
+      border-radius: 15px;
+      margin-top: 20px;
+    }
+
+    /* Floating Chemical Elements */
+    .chemical {
+      position: fixed;
+      font-size: 2rem;
+      color: rgba(255, 215, 0, 0.3);
+      animation: float 10s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    }
+
+    @keyframes fadeInDown {
+      0% { opacity: 0; transform: translateY(-30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes popUp {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Royal Society of Sciences</h1>
+    <h2>Royal College Curepipe</h2>
+    <p>Advancing scientific knowledge and fostering academic excellence 
+       through research, collaboration, and innovation.</p>
+    <a href="submit.html" class="btn">Submit Paper</a>
+    <a href="projects.html" class="btn">View Projects</a>
+  </header>
+
+  <section id="about">
+    <h2>About Our Society</h2>
+    <img src="https://images.unsplash.com/photo-1581092580491-76c02b66b4b6" alt="Lab Image">
+    <p style="margin-top:20px; max-width:600px; margin-left:auto; margin-right:auto;">
+      Founded with the vision of advancing scientific knowledge and academic excellence,
+      the Royal Society of Sciences at Royal College Curepipe serves as a beacon of 
+      intellectual curiosity and research innovation.
+    </p>
+  </section>
+
+  <section id="research">
+    <h2>Research Papers</h2>
+    <p style="max-width:600px; margin:20px auto;">
+      Explore our collection of cutting-edge research papers and contribute 
+      to our growing repository of scientific knowledge.
+    </p>
+    <a href="research.html" class="btn">Browse Papers</a>
+  </section>
+
+  <section id="projects">
+    <h2>Featured Projects</h2>
+    <p style="max-width:600px; margin:20px auto;">
+      Discover our innovative research projects that are shaping 
+      the future of science and technology.
+    </p>
+    <a href="projects.html" class="btn">Explore Projects</a>
+  </section>
+
+  <!-- Floating chemical elements -->
+  <div class="chemical" style="left:5%; animation-delay:0s;">H₂O</div>
+  <div class="chemical" style="left:25%; animation-delay:2s;">CO₂</div>
+  <div class="chemical" style="left:45%; animation-delay:4s;">NaCl</div>
+  <div class="chemical" style="left:65%; animation-delay:1s;">O₂</div>
+  <div class="chemical" style="left:85%; animation-delay:3s;">C₆H₁₂O₆</div>
+
+  <script>
+    // Scroll reveal animation
+    const sections = document.querySelectorAll('section');
+    window.addEventListener('scroll', () => {
+      sections.forEach(sec => {
+        const rect = sec.getBoundingClientRect();
+        if(rect.top < window.innerHeight - 100){
+          sec.classList.add('show');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
